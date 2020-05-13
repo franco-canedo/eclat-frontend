@@ -15,9 +15,10 @@ class GalleryAdmin extends Component {
 
     uploadHandler = (event) => {
         const fd = new FormData();
-        fd.append('image', this.state.selectedFile, this.state.selectedFile.name);
-        axios.post(`${API_ROOT}`, fd)
+        fd.append('photos', this.state.selectedFile, this.state.selectedFile.name);
+        axios.patch(`${API_ROOT}/api/v1/update`, fd)
         .then(res => console.log(res))
+        // .then(data => console.log(data))
     }
 
     render() {

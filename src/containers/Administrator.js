@@ -26,7 +26,6 @@ class Administrator extends Component {
 
     handleGalleryClick = (e) => {
         e.preventDefault();
-        console.log('Gallery?')
         this.setState({
             page: "Gallery"
         })
