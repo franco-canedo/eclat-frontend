@@ -63,12 +63,12 @@ class App extends Component {
         />
         {
           this.state.page === "Home" ? <Home /> :
-          this.state.page === "Gallery" ? <Gallery /> : 
-          this.state.page === "CurrentProject" ? <CurrentProjects /> : 
-          this.state.page === "About" ? <About /> : 
-          this.state.page === "Contact" ? <Contact /> : null
+            this.state.page === "Gallery" ? <Gallery /> :
+              this.state.page === "CurrentProject" ? <CurrentProjects /> :
+                this.state.page === "About" ? <About /> :
+                  this.state.page === "Contact" ? <Contact /> : null
         }
-        
+
       </div>
     )
 

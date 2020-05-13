@@ -5,22 +5,31 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import Login from './containers/Login';
+import { createStore, compose, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import allReducers from './reducers';
+import { Provider } from 'react-redux';
+import 'bootstrap/dist/css/bootstrap.css';
 import Administrator from './containers/Administrator';
-import Gallery from './components/Gallery';
-import currentProjects from './components/CurrentProjects';
-import About from './components/About';
-import Contact from './components/Contact';
+
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(
+  allReducers,
+  composeEnhancer(applyMiddleware(thunk)),
+);
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <Route exact path='/' component={App} />
-      <Route exact path='/admin' component={Administrator} />
-      <Route exact path='/gallery' component={Gallery} />
-      <Route exact path='/currentProjects' component={currentProjects} />
-      <Route exact path='/about' component={About} />
-      <Route exact path='/contact' component={Contact} />
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Route exact path='/' component={App} />
+        <Route exact path='/admin' component={Login} />
+        <Route exact path='/adminHome' component={Administrator} />
+      </Router>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
