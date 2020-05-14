@@ -38,7 +38,7 @@
 }
 
 .container {
-  border: dotted;
+  /* border: dotted; */
   width: 90%;
   /* height: 1000px; */
   padding: 20px;
@@ -78,7 +78,7 @@
   padding: 10px;
   margin: 5px;
   /* padding-top: 20px; */
-  border: solid;
+  background-color: honeydew;
   text-align: center;
   color: black;
   font-family: sans-serif;
@@ -106,7 +106,8 @@
   padding: 10px;
   margin: 5px;
   /* padding-top: 20px; */
-  border: solid;
+  background-color: honeydew;
+  /* border: solid; */
   text-align: center;
   color: black;
   font-family: sans-serif;
@@ -121,7 +122,7 @@
 }
 
 .containerAdmin {
-  border: dotted;
+  /* border: dotted; */
   width: 95%;
   /* height: 1000px; */
   padding: 20px;
@@ -138,6 +139,18 @@
   border-right: double;
   height: 90%;
   text-align: left;
+}
+
+.aboutForm {
+  text-align: left;
+}
+
+.aboutInfo {
+  /* border: ridge; */
+  background-color: whitesmoke;
+  margin-top: 20px;
+  padding: 10px;
+  box-shadow: .5px 1.5px;
 }
 
 
