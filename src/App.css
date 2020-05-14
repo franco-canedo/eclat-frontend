@@ -143,6 +143,7 @@
 
 .aboutForm {
   text-align: left;
+  margin-top: 20px;
 }
 
 .aboutInfo {
@@ -151,6 +152,47 @@
   margin-top: 20px;
   padding: 10px;
   box-shadow: .5px 1.5px;
+}
+
+.newProjectForm {
+  text-align: left;
+  margin-top: 20px;
+}
+
+.projects {
+  border-top: ridge;
+  margin-top: 20px;
+}
+
+.projectDiv {
+  background-color: whitesmoke;
+  box-shadow: .5px 1.5px;
+  margin-top: 20px;
+  padding: 20px;
+  /* column-count: 2; */
+}
+
+.projectInfoDiv {
+  column-count: 2;
+  height: 150px;
+}
+
+.projectDelete {
+  float: right;
+}
+
+.projectAvatar {
+  width: 20%;
+  float: left;
+  border: ridge;
+  height: 75px;
+  margin-right: 20px;
+}
+
+.projectPicturesDiv {
+  column-count: 5;
+  height: 100px;
+  border: double;
 }
 
 

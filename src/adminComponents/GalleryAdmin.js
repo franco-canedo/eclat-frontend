@@ -58,7 +58,7 @@ class GalleryAdmin extends Component {
         fd.append('id', event.target.id)
         axios.post(`${API_ROOT}/deletePhoto`, fd)
             .then(res => {
-                alert('photo succesfully deleted')
+                alert('Photo succesfully deleted')
                 const photo = this.state.photos.find(p => {
                     return p.id === res.data.id
                 });
