@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import axios from 'axios';
 import { API_ROOT } from '../constants';
+import EditModal from './EditModal';
 
 class ProjectCard extends Component {
     state = {
@@ -13,6 +14,8 @@ class ProjectCard extends Component {
         photos: [],
         pictureShow: false,
         src: "",
+        editShow: false,
+
     }
 
     componentDidMount() {
@@ -85,7 +88,7 @@ class ProjectCard extends Component {
                 })
                 this.handlePictureClose();
             }).catch(error => alert(error));
-        
+
     }
 
     handleShow = () => {
@@ -110,9 +113,28 @@ class ProjectCard extends Component {
         })
     }
 
+    handleProfileShow = () => {
+        this.setState({
+            src: this.props.project.photo,
+            pictureShow: true
+        })
+    }
+
     handlePictureClose = () => {
         this.setState({
             pictureShow: false
+        })
+    }
+
+    handleEditShow = () => {
+        this.setState({
+            editShow: true
+        })
+    }
+
+    handleEditClose = () => {
+        this.setState({
+            editShow: false
         })
     }
 
@@ -121,12 +143,13 @@ class ProjectCard extends Component {
             <div className="projectDiv">
                 <div className="projectInfoDiv">
                     <div className="projectAvatar">
-                        <img></img>
+                        <img alt="new" src={this.props.project.photo} 
+                        height="115" width="100" onClick={() => this.handleProfileShow()}></img>
                     </div>
                     <div>
                         <h3>{this.props.project.address}</h3>
                         <br></br>
-                        <p>Beds: {this.props.project.beds} | Baths: {this.props.project.baths}</p>
+                        <p>Beds: {this.props.project.beds} | Baths: {this.props.project.baths} | Sqft: {this.props.project.square_feet}</p>
                         <p>Completion Date: {this.props.project.completion_date}</p>
 
                         <Button variant="outline-danger" className="projectDelete"
@@ -149,7 +172,9 @@ class ProjectCard extends Component {
                             </Modal.Footer>
                         </Modal>
                         <Button variant="outline-dark" className="projectDelete"
-                            onClick={this.handleEditClick}>Edit</Button>
+                            onClick={this.handleEditShow}>Edit</Button>
+                        <EditModal show={this.state.editShow} onHide={this.handleEditClose}
+                            project={this.props.project} />
                         <Form>
                             <Form.Group controlId="formBasicEmail">
                                 <Form.Label>Upload a Picture</Form.Label>
@@ -182,8 +207,8 @@ class ProjectCard extends Component {
                     >
                         <Modal.Header closeButton>
                             <Modal.Title id="example-modal-sizes-title-lg">
-                               
-                                        </Modal.Title>
+
+                            </Modal.Title>
                         </Modal.Header>
                         <img src={this.state.src}
                             alt="new" className="center"></img>

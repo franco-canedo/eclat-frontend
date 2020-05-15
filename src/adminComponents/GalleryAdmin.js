@@ -76,33 +76,35 @@ class GalleryAdmin extends Component {
             <div>
                 <div className="containerAdmin">
                     <h1>Gallery</h1>
-                    <div className="formGallery">
-                        <Form>
-                            <Form.Group controlId="formBasicEmail">
-                                <Form.Label>Upload a Picture</Form.Label>
-                                <Form.Control type="file" multiple onChange={this.fileSelectedHandler} />
-                                <Form.Text className="text-muted">
-                                    Upload a .png file
+                    <div className="galleryContainer">
+                        <div className="formGallery">
+                            <Form>
+                                <Form.Group controlId="formBasicEmail">
+                                    <Form.Label>Upload a Picture</Form.Label>
+                                    <Form.Control type="file" multiple onChange={this.fileSelectedHandler} />
+                                    <Form.Text className="text-muted">
+                                        Upload a .png file
                             </Form.Text>
-                            </Form.Group>
-                            <Button variant="success" type="submit" onClick={this.uploadHandler}>
-                                Upload
+                                </Form.Group>
+                                <Button variant="success" type="submit" onClick={this.uploadHandler}>
+                                    Upload
                         </Button>
-                        </Form>
-                    </div>
-                    {/* <input type="file" onChange={this.fileSelectedHandler}></input>
+                            </Form>
+                        </div>
+                        {/* <input type="file" onChange={this.fileSelectedHandler}></input>
                     <button onClick={this.uploadHandler}>Upload</button> */}
-                    <div className="photosContainer">
-                        {
-                            this.state.photos.map(photo => {
-                                return <div className="pictureCard">
-                                    <img id={photo.id} key={photo.id} alt="user pictures" src={photo.photo}
-                                        height="200" width="200"
-                                    ></img>
-                                    <Button variant="dark" onClick={this.deletePicture} id={photo.id}>X</Button>
-                                </div>
-                            })
-                        }
+                        <div className="photosContainer">
+                            {
+                                this.state.photos.map(photo => {
+                                    return <div className="pictureCard">
+                                        <img id={photo.id} key={photo.id} alt="user pictures" src={photo.photo}
+                                            height="200" width="200"
+                                        ></img>
+                                        <Button variant="dark" onClick={this.deletePicture} id={photo.id}>X</Button>
+                                    </div>
+                                })
+                            }
+                        </div>
                     </div>
                 </div>
             </div>

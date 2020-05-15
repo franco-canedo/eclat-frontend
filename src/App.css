@@ -129,8 +129,17 @@
   /* column-count: 5; */
 }
 
+.galleryContainer {
+  margin-top: 20px;
+  border-top: ridge;
+  padding-top: 20px;
+}
+
 .photosContainer {
   column-count: 4;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: whitesmoke;
 }
 
 .formGallery {

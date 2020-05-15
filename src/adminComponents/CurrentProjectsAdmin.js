@@ -13,6 +13,7 @@ class CurrentProjectsAdmin extends Component {
         address: "",
         beds: "",
         baths: "",
+        square_feet: "",
         completionDate: "",
         projects: []
     }
@@ -47,6 +48,7 @@ class CurrentProjectsAdmin extends Component {
         fd.append('beds', this.state.beds);
         fd.append('baths', this.state.baths);
         fd.append('completion_date', this.state.completionDate);
+        fd.append('square_feet', this.state.square_feet);
         fd.append('user_id', this.props.user.currentUser.id);
         axios.post(`${API_ROOT}/newProject`, fd)
             .then(res => {
@@ -58,6 +60,7 @@ class CurrentProjectsAdmin extends Component {
                         address: "",
                         beds: "",
                         baths: "",
+                        square_feet: "",
                         completionDate: "",
                     }
                 })
@@ -110,6 +113,11 @@ class CurrentProjectsAdmin extends Component {
                                                 <Form.Label>Bathrooms</Form.Label>
                                                 <Form.Control type="text" placeholder="Enter # baths"
                                                     value={this.state.baths} name="baths" onChange={this.handleChange} />
+                                            </Form.Group>
+                                            <Form.Group controlId="formGridPassword">
+                                                <Form.Label>Sqft</Form.Label>
+                                                <Form.Control type="text" placeholder="Enter square feet"
+                                                    value={this.state.square_feet} name="square_feet" onChange={this.handleChange} />
                                             </Form.Group>
                                         </Form.Row>
                                         <Form.Row>
