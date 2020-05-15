@@ -4,6 +4,7 @@ import { API_ROOT } from '../constants';
 import { connect } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import ProjectCard from './ProjectCard';
 
 
 class CurrentProjectsAdmin extends Component {
@@ -53,17 +54,20 @@ class CurrentProjectsAdmin extends Component {
                 alert('New project created.')
                 this.setState(prevState => {
                     return {
-                        projects: [...prevState.projects, res.data]
+                        projects: [...prevState.projects, res.data],
+                        address: "",
+                        beds: "",
+                        baths: "",
+                        completionDate: "",
                     }
                 })
             }).catch(error => alert(error));
     }
 
-    handleDelete = (event) => {
-        event.preventDefault();
+    handleDelete = (id) => {
         const fd = new FormData();
-        console.log(event.target.id);
-        fd.append('id', event.target.id);
+        console.log(id);
+        fd.append('id', id);
         axios.post(`${API_ROOT}/deleteProject`, fd)
             .then(res => {
                 console.log(res.data);
@@ -84,7 +88,7 @@ class CurrentProjectsAdmin extends Component {
         return (
             <div>
                 <div className="container">
-                    <h1>CurrentProjects</h1>
+                    <h1>Current Projects</h1>
                     <div className="newProjectForm">
                         {
                             this.state.form ?
@@ -115,10 +119,11 @@ class CurrentProjectsAdmin extends Component {
                                                     value={this.state.completionDate} name="completionDate" onChange={this.handleChange} />
                                             </Form.Group>
                                         </Form.Row>
-                                        <Button variant="primary" type="submit" onClick={this.handleSubmit}>
+                                        
+                                        <Button variant="dark" onClick={this.handleNewClick}>Cancel</Button>
+                                        <Button variant="primary" type="submit" onClick={this.handleSubmit} className="buttonMargin">
                                             Submit
                                         </Button>
-                                        <Button variant="dark" onClick={this.handleNewClick}>Cancel</Button>
                                     </Form>
 
                                 </Fragment>
@@ -128,29 +133,7 @@ class CurrentProjectsAdmin extends Component {
                         <div className="projects">
                             {
                                 this.state.projects.map(project => {
-                                    return <div className="projectDiv">
-                                        <div className="projectInfoDiv">
-                                            <div className="projectAvatar">
-                                                <img></img>
-                                            </div>
-                                            <div>
-                                                <h3>{project.address}</h3>
-                                                <br></br>
-                                                <p>Beds: {project.beds} | Baths: {project.baths}</p>
-                                                <p>Completion Date: {project.completion_date}</p>
-
-                                                <Button variant="outline-danger" className="projectDelete"
-                                                    id={project.id} onClick={this.handleDelete}>Delete</Button>
-                                                <Button variant="outline-dark" className="projectDelete">Edit</Button>
-                                            </div>
-
-                                        </div>
-                                        <div className="projectPicturesDiv">
-                                            <button></button>
-                                            <button></button>
-                                            <button></button>
-                                        </div>
-                                    </div>
+                                    return <ProjectCard project={project} handleDelete={this.handleDelete}/>
                                 })
                             }
                         </div>

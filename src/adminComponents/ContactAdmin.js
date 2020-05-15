@@ -60,6 +60,10 @@ class ContactAdmin extends Component {
                     company_address: res.data.company_address,
                     email: res.data.email,
                     phone_number: res.data.phone_number,
+                    company_name_saved: res.data.company_name,
+                    company_address_saved: res.data.company_address,
+                    email_saved: res.data.email,
+                    phone_number_saved: res.data.phone_number,
                 })
             }).catch(error => alert(error));
     }
@@ -98,7 +102,7 @@ class ContactAdmin extends Component {
                                         </Form.Group>
                                     </Form>
                                     <Button variant="dark" onClick={this.editClick}>Cancel</Button>
-                                    <Button variant="primary" onClick={this.handleSubmit}>Save</Button>
+                                    <Button variant="primary" onClick={this.handleSubmit} className="buttonMargin">Save</Button>
                                 </Fragment>
                                 :
                                 <Button variant="dark" onClick={this.editClick}>Edit</Button>

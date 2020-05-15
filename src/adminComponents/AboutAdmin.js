@@ -74,7 +74,7 @@ class AboutAdmin extends Component {
                                         </Form.Group>
                                     </Form>
                                     <Button variant="dark" onClick={this.editClick}>Cancel</Button>
-                                    <Button variant="primary" onClick={this.handleSubmit}>Save</Button>
+                                    <Button variant="primary" onClick={this.handleSubmit} className="buttonMargin">Save</Button>
                                 </Fragment>
                                 :
                                 <Button variant="dark" onClick={this.editClick}>Edit</Button>

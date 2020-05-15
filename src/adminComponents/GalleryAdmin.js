@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios';
-import { API_ROOT, HEADERS } from '../constants';
+import { API_ROOT } from '../constants';
 import { connect } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
