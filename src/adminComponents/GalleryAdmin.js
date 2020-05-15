@@ -98,9 +98,11 @@ class GalleryAdmin extends Component {
                                 this.state.photos.map(photo => {
                                     return <div className="pictureCard">
                                         <img id={photo.id} key={photo.id} alt="user pictures" src={photo.photo}
-                                            height="200" width="200"
+                                            className="image"
                                         ></img>
-                                        <Button variant="dark" onClick={this.deletePicture} id={photo.id}>X</Button>
+                                        <div className="left">
+                                            <Button variant="dark" onClick={this.deletePicture} id={photo.id}>X</Button>
+                                        </div>
                                     </div>
                                 })
                             }

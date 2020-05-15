@@ -1,14 +1,46 @@
 import React, { Component } from "react";
+import axios from 'axios';
+import { API_ROOT } from '../constants';
+import Carousel from 'react-bootstrap/Carousel';
 
 class Home extends Component {
-  render() {
-    return (
-      <div className="home">
-      
-        <h1>Home</h1>
-      </div>
-    );
-  }
+    state = {
+        photos: []
+    }
+
+    componentDidMount() {
+        axios.get(`${API_ROOT}/allPhotos`)
+            .then(res => {
+                console.log(res.data);
+                this.setState({
+                    photos: res.data
+                })
+            })
+    }
+
+    render() {
+        return (
+            <div className="gallery">
+
+                <div className="container">
+                    <Carousel className="carouselHome">
+                        {
+                            this.state.photos.map(photo => {
+                                return <Carousel.Item>
+                                    <img                        
+                                        src={photo.photo}
+                                        alt="Home"
+                                        className="carouselPictures"
+                                    />
+                                </Carousel.Item>
+                            })
+                        }
+                    </Carousel>
+
+                </div>
+            </div>
+        );
+    }
 }
 
 export default Home;
