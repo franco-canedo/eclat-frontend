@@ -50,6 +50,14 @@ class EditModal extends Component {
             .then(res => {
                 console.log(res.data);
                 alert('Changes saved');
+                this.setState({
+                    address: res.data.address,
+                    beds: res.data.beds,
+                    baths: res.data.baths,
+                    square_feet: res.data.square_feet,
+                    completionDate: res.data.completion_date,
+                })
+                this.props.handleEditProjectInfo(this.state)
                 this.props.onHide();
             }).catch(error => alert(error));
         } else {
@@ -65,6 +73,14 @@ class EditModal extends Component {
             .then(res => {
                 console.log(res.data);
                 alert('Changes saved');
+                this.setState({
+                    address: res.data.address,
+                    beds: res.data.beds,
+                    baths: res.data.baths,
+                    square_feet: res.data.square_feet,
+                    completionDate: res.data.completion_date,
+                })
+                this.props.handleEditProjectInfo(this.state, res.data.photo)
                 this.props.onHide();
             }).catch(error => alert(error));
         }

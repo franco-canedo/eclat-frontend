@@ -15,6 +15,12 @@ class ProjectCard extends Component {
         pictureShow: false,
         src: "",
         editShow: false,
+        address: "",
+        beds: "",
+        baths: "",
+        square_feet: "",
+        completionDate: "",
+        avatar: "",
 
     }
 
@@ -23,7 +29,13 @@ class ProjectCard extends Component {
             .then(res => {
                 console.log(res.data.project_pictures);
                 this.setState({
-                    photos: res.data.project_pictures
+                    photos: res.data.project_pictures,
+                    address: this.props.project.address,
+                    beds: this.props.project.beds,
+                    baths: this.props.project.baths,
+                    square_feet: this.props.project.square_feet,
+                    completionDate: this.props.project.completion_date,
+                    avatar: this.props.project.photo,
                 })
             })
 
@@ -88,7 +100,22 @@ class ProjectCard extends Component {
                 })
                 this.handlePictureClose();
             }).catch(error => alert(error));
+    }
 
+    handleEditProjectInfo = (state, photo) => {
+        console.log(photo);
+        let avatar = this.state.avatar;
+        if (photo !== undefined) {
+            avatar = photo
+        }
+        this.setState({
+            address: state.address,
+            beds: state.beds,
+            baths: state.baths,
+            square_feet: state.square_feet,
+            completionDate: state.completionDate,
+            avatar: avatar,
+        })
     }
 
     handleShow = () => {
@@ -143,20 +170,20 @@ class ProjectCard extends Component {
             <div className="projectDiv">
                 <div className="projectInfoDiv">
                     <div className="projectAvatar">
-                        <img alt="new" src={this.props.project.photo} 
+                        <img alt="new" src={this.state.avatar} 
                         height="115" width="100" onClick={() => this.handleProfileShow()}></img>
                     </div>
                     <div>
-                        <h3>{this.props.project.address}</h3>
+                        <h3>{this.state.address}</h3>
                         <br></br>
-                        <p>Beds: {this.props.project.beds} | Baths: {this.props.project.baths} | Sqft: {this.props.project.square_feet}</p>
-                        <p>Completion Date: {this.props.project.completion_date}</p>
+                        <p>Beds: {this.state.beds} | Baths: {this.state.baths} | Sqft: {this.state.square_feet}</p>
+                        <p>Completion Date: {this.state.completionDate}</p>
 
                         <Button variant="outline-danger" className="projectDelete"
                             id={this.props.project.id} onClick={this.handleShow}>Delete</Button>
                         <Modal show={this.state.show} onHide={this.handleClose}>
                             <Modal.Header closeButton>
-                                <Modal.Title>{this.props.project.address}</Modal.Title>
+                                <Modal.Title>{this.state.address}</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>Are you sure you want to delete this project?</Modal.Body>
                             <Modal.Footer>
@@ -174,7 +201,7 @@ class ProjectCard extends Component {
                         <Button variant="outline-dark" className="projectDelete"
                             onClick={this.handleEditShow}>Edit</Button>
                         <EditModal show={this.state.editShow} onHide={this.handleEditClose}
-                            project={this.props.project} />
+                            project={this.props.project} handleEditProjectInfo={this.handleEditProjectInfo} />
                         <Form>
                             <Form.Group controlId="formBasicEmail">
                                 <Form.Label>Upload a Picture</Form.Label>
