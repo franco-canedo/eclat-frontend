@@ -28,7 +28,7 @@ class About extends Component {
                 <div className="container">
 
                     <div className="containerEclatAbout">
-                        <div className="aboutInfo">
+                        <div className="aboutInfoEclat">
                             <h2>{this.state.motto}</h2>
                             <br></br>
                             <p>{this.state.who_we_are}</p>

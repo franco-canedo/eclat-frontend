@@ -31,7 +31,7 @@ class Contact extends Component {
             <div className="container">
 
                 <div className="containerEclatAbout">
-                    <div className="aboutInfo">
+                    <div className="aboutInfoEclat">
                         <h2>{this.state.company_name}</h2>
                         <br></br>
                         <p>{this.state.company_address}</p>
