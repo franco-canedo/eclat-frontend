@@ -42,6 +42,7 @@
   width: 90%;
   /* height: 1000px; */
   padding: 20px;
+  margin-top: 150px;
 }
 
 .gallery {
@@ -93,25 +94,35 @@
 }
 
 .carouselPictures {
-  display: block;
+  /* display: block; */
+  /* position: static; */
+
   margin-left: auto;
   margin-right: auto;
   width: auto;
-  max-height: 650px;
+  max-height: 600px;
 }
 
 .Elogo {
   float: left;
-  padding: 20px;
+  padding: 5px;
 }
+
+.logoImg {
+  margin-left: 300px;
+  margin-top: 5px;
+}
+
 
 .header {
   width: 100%;
   height: 100px;
   /* border: dotted; */
   box-shadow: 3px 3px;
-  background-color: #001f3f;
-  color: white;
+  /* background-color: #001f3f; */
+  background-color: white;
+  color: grey;
+  position: fixed;
 }
 
 .navLinks {
@@ -129,9 +140,10 @@
   padding: 10px;
   margin-top: 15px;
   /* padding-top: 20px; */
-  background-color: #001f3f;
+  /* background-color: #001f3f; */
+  background-color: white;
   text-align: center;
-  color: white;
+  color: black;
   font-family: sans-serif;
   font-size: 25px;
   border: none;
@@ -180,6 +192,7 @@
 }
 
 .pictureCard {
+  
   margin: 5px;
   padding: 5px;
   box-shadow: .5px 1.5px;
