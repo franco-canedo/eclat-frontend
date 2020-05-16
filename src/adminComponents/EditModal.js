@@ -126,11 +126,11 @@ class EditModal extends Component {
                             </Form.Group>
                         </Form.Row>
                         <Form.Row>
-                            <Form.Group controlId="formGridCity">
+                            {/* <Form.Group controlId="formGridCity">
                                 <Form.Label>Completion Date</Form.Label>
                                 <Form.Control type="text" placeholder="11/15/2020"
                                     value={this.state.completionDate} name="completionDate" onChange={this.handleChange} />
-                            </Form.Group>
+                            </Form.Group> */}
                             <Form.Group controlId="formGridCity">
                                 <Form.Label>Choose profile picture</Form.Label>
                                 <Form.Control type="file"

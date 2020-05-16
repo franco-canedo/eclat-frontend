@@ -120,13 +120,13 @@ class CurrentProjectsAdmin extends Component {
                                                     value={this.state.square_feet} name="square_feet" onChange={this.handleChange} />
                                             </Form.Group>
                                         </Form.Row>
-                                        <Form.Row>
+                                        {/* <Form.Row>
                                             <Form.Group controlId="formGridCity">
                                                 <Form.Label>Completion Date</Form.Label>
                                                 <Form.Control type="text" placeholder="11/15/2020"
                                                     value={this.state.completionDate} name="completionDate" onChange={this.handleChange} />
                                             </Form.Group>
-                                        </Form.Row>
+                                        </Form.Row> */}
                                         
                                         <Button variant="dark" onClick={this.handleNewClick}>Cancel</Button>
                                         <Button variant="primary" type="submit" onClick={this.handleSubmit} className="buttonMargin">

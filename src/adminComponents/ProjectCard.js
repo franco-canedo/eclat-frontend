@@ -177,7 +177,11 @@ class ProjectCard extends Component {
                         <h3>{this.state.address}</h3>
                         <br></br>
                         <p>Beds: {this.state.beds} | Baths: {this.state.baths} | Sqft: {this.state.square_feet}</p>
-                        <p>Completion Date: {this.state.completionDate}</p>
+                        {/* <p>Completion Date: {this.state.completionDate}</p> */}
+                        <p>---------------------------------</p>
+                        <p></p>
+                        <p></p>
+                        
 
                         <Button variant="outline-danger" className="projectDelete"
                             id={this.props.project.id} onClick={this.handleShow}>Delete</Button>

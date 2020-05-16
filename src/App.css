@@ -71,6 +71,18 @@
   margin-top: 20px;
   padding: 10px;
   box-shadow: .5px 1.5px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+ 
+}
+
+.aboutInfoEclatForm {
+  /* border: ridge; */
+  background-color: whitesmoke;
+  margin-top: 20px;
+  padding: 10px;
+  box-shadow: .5px 1.5px;
+  /* text-align: left; */
+  font-family: Georgia, 'Times New Roman', Times, serif;
  
 }
 
@@ -159,6 +171,8 @@
   /* border: dotted; */
   box-shadow: 3px 3px;
   background-color: whitesmoke;
+  position: fixed;
+  margin-top: -150px;
 }
 
 .login {
@@ -236,6 +250,7 @@
 
 .formGallery {
   padding: 5px;
+  width: 25%;
   float: left;
   border-right: double;
   height: 90%;
@@ -307,7 +322,12 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 100%;
+  width: auto;
+  max-height: 500px;
+}
+
+.homeLogoAdmin {
+  max-height: 500px;
 }
 
 
