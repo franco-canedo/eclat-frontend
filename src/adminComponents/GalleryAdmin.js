@@ -1,24 +1,17 @@
 import React, { Component } from "react";
 import axios from 'axios';
-import { API_ROOT, HEADERS } from '../constants';
+import { API_ROOT } from '../constants';
 import { connect } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 class GalleryAdmin extends Component {
     state = {
-        selectedFile: null,
+        selectedFile: [],
         photos: []
     }
 
     componentDidMount() {
-        // axios.get(`${API_ROOT}/api/v1/gallery`)
-        //     .then(res => {
-        //         console.log(res);
-        //         this.setState({
-        //             photos: [res]
-        //         })
-        //     })
         axios.get(`${API_ROOT}/allPhotos`)
             .then(res => {
                 console.log(res.data);
@@ -31,39 +24,30 @@ class GalleryAdmin extends Component {
 
     fileSelectedHandler = (event) => {
         this.setState({
-            selectedFile: event.target.files[0]
+            selectedFile: event.target.files
         })
     }
 
     uploadHandler = (event) => {
         event.preventDefault();
-        if (this.state.selectedFile === null) {
+        if (this.state.selectedFile.length === 0) {
             alert('no file chosen');
         } else {
-            const fd = new FormData();
-            // fd.append('photos', this.state.selectedFile, this.state.selectedFile.name);
-            // axios.patch(`${API_ROOT}/api/v1/update`, fd)
-            //     .then(res => {
-            //         console.log(res);
-            //         alert('file uploaded');
-            //         this.setState(prevState => {
-            //             return {
-            //                 photos: [...prevState.photos, res]
-            //             }
-            //         })
-            //     }).catch(error => alert(error));
-            fd.append('avatar', this.state.selectedFile, this.state.selectedFile.name);
-            fd.append('user_id', this.props.user.currentUser.id)
-            axios.post(`${API_ROOT}/photo`, fd)
-                .then(res => {
-                    console.log(res);
-                    alert('file uploaded');
-                    this.setState(prevState => {
-                        return {
-                            photos: [...prevState.photos, res.data]
-                        }
-                    })
-                }).catch(error => alert(error));
+            for (let i = 0; i < this.state.selectedFile.length; i++) {
+                const fd = new FormData();
+                fd.append('avatar', this.state.selectedFile[i]);
+                fd.append('user_id', this.props.user.currentUser.id)
+                axios.post(`${API_ROOT}/photo`, fd)
+                    .then(res => {
+                        console.log(res);
+                        this.setState(prevState => {
+                            return {
+                                photos: [...prevState.photos, res.data]
+                            }
+                        })
+                    }).catch(error => alert(error));
+            }
+            alert('Files uploaded');
 
         }
 
@@ -74,7 +58,7 @@ class GalleryAdmin extends Component {
         fd.append('id', event.target.id)
         axios.post(`${API_ROOT}/deletePhoto`, fd)
             .then(res => {
-                alert('photo succesfully deleted')
+                alert('Photo succesfully deleted')
                 const photo = this.state.photos.find(p => {
                     return p.id === res.data.id
                 });
@@ -92,38 +76,37 @@ class GalleryAdmin extends Component {
             <div>
                 <div className="containerAdmin">
                     <h1>Gallery</h1>
-                    <div className="formGallery">
-                        <Form>
-                            <Form.Group controlId="formBasicEmail">
-                                <Form.Label>Upload a Picture</Form.Label>
-                                <Form.Control type="file" onChange={this.fileSelectedHandler} />
-                                <Form.Text className="text-muted">
-                                    Upload a .png file
+                    <div className="galleryContainer">
+                        <div className="formGallery">
+                            <Form>
+                                <Form.Group controlId="formBasicEmail">
+                                    <Form.Label>Upload a Picture</Form.Label>
+                                    <Form.Control type="file" multiple onChange={this.fileSelectedHandler} />
+                                    <Form.Text className="text-muted">
+                                        Upload a .png file
                             </Form.Text>
-                            </Form.Group>
-
-                            <Form.Group controlId="formBasicPassword">
-                                <Form.Label>Home Address</Form.Label>
-                                <Form.Control type="text" placeholder="Home Address" />
-                            </Form.Group>
-                            <Button variant="success" type="submit" onClick={this.uploadHandler}>
-                                Upload
+                                </Form.Group>
+                                <Button variant="success" type="submit" onClick={this.uploadHandler}>
+                                    Upload
                         </Button>
-                        </Form>
-                    </div>
-                    {/* <input type="file" onChange={this.fileSelectedHandler}></input>
+                            </Form>
+                        </div>
+                        {/* <input type="file" onChange={this.fileSelectedHandler}></input>
                     <button onClick={this.uploadHandler}>Upload</button> */}
-                    <div className="photosContainer">
-                        {
-                            this.state.photos.map(photo => {
-                                return <div className="pictureCard">
-                                    <img id={photo.id} key={photo.id} alt="user pictures" src={photo.photo}
-                                        height="200" width="200"
-                                    ></img>
-                                    <Button variant="dark" onClick={this.deletePicture} id={photo.id}>X</Button>
-                                </div>
-                            })
-                        }
+                        <div className="photosContainer">
+                            {
+                                this.state.photos.map(photo => {
+                                    return <div className="pictureCard">
+                                        <img id={photo.id} key={photo.id} alt="user pictures" src={photo.photo}
+                                            className="image"
+                                        ></img>
+                                        <div className="left">
+                                            <Button variant="dark" onClick={this.deletePicture} id={photo.id}>X</Button>
+                                        </div>
+                                    </div>
+                                })
+                            }
+                        </div>
                     </div>
                 </div>
             </div>

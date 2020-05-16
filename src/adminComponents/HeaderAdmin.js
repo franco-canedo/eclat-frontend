@@ -16,7 +16,7 @@ class HeaderAdmin extends Component {
 
     render() {
         return (
-            <div className="header">
+            <div className="headerAdmin">
                 <div className="Elogo">
                     <h1 onClick={this.props.homeClick}>Administrator</h1>
                 </div>

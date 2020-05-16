@@ -1,17 +1,50 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
+import axios from 'axios';
+import { API_ROOT } from '../constants';
 
 class About extends Component {
+    state = {
+        motto: "",
+        who_we_are: "",
+    }
+
+    componentDidMount() {
+        axios.get(`${API_ROOT}/api/v1/aboutInfo`)
+            .then(res => {
+                console.log(res.data);
+                this.setState({
+                    motto: res.data.motto,
+                    who_we_are: res.data.who_we_are,
+                })
+            })
+
+    }
+
     render() {
         return (
-            <div>
-                
+            <div className="gallery">
+
                 <div className="container">
 
-                    <h1>About</h1>
+                    <div className="containerEclatAbout">
+                        <div className="aboutInfoEclat">
+                            <h2>{this.state.motto}</h2>
+                            <br></br>
+                            <p>{this.state.who_we_are}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         );
     }
 }
 
-export default About;
+const mapStateToProps = state => {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps, null)(About);
+
