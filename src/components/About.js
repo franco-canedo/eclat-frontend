@@ -23,7 +23,7 @@ class About extends Component {
 
     render() {
         return (
-            <div className="gallery">
+            <div className="gallery2">
 
                 <div className="container">
 

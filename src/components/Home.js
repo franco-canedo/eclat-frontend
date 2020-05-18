@@ -20,9 +20,9 @@ class Home extends Component {
 
     render() {
         return (
-            <div className="gallery">
+            <div className="gallery2">
 
-                <div className="container">
+                <div className="container2">
                     <Carousel className="carouselHome">
                         {
                             this.state.photos.map(photo => {

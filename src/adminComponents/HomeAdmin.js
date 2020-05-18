@@ -49,6 +49,7 @@ class HomeAdmin extends Component {
 
     render() {
         return (
+            <div>
             <div className="container">
 
                 <h1>Home</h1>
@@ -82,6 +83,7 @@ class HomeAdmin extends Component {
                         } alt="logo" className="homeLogoAdmin"></img>
                 </div>
             </div >
+            </div>
         );
     }
 }
