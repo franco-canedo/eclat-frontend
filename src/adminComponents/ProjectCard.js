@@ -18,9 +18,11 @@ class ProjectCard extends Component {
         address: "",
         beds: "",
         baths: "",
+        comment: "",
         square_feet: "",
         completionDate: "",
         avatar: "",
+        profileShow: false,
 
     }
 
@@ -34,6 +36,7 @@ class ProjectCard extends Component {
                     beds: this.props.project.beds,
                     baths: this.props.project.baths,
                     square_feet: this.props.project.square_feet,
+                    comment: this.props.project.comment,
                     completionDate: this.props.project.completion_date,
                     avatar: this.props.project.photo,
                 })
@@ -113,6 +116,7 @@ class ProjectCard extends Component {
             beds: state.beds,
             baths: state.baths,
             square_feet: state.square_feet,
+            comment: state.comment,
             completionDate: state.completionDate,
             avatar: avatar,
         })
@@ -143,7 +147,13 @@ class ProjectCard extends Component {
     handleProfileShow = () => {
         this.setState({
             src: this.props.project.photo,
-            pictureShow: true
+            profileShow: true
+        })
+    }
+
+    handleProfileClose = () => {
+        this.setState({
+            profileShow: false
         })
     }
 
@@ -170,14 +180,18 @@ class ProjectCard extends Component {
             <div className="projectDiv">
                 <div className="projectInfoDiv">
                     <div className="projectAvatar">
-                        <img alt="new" src={this.state.avatar} 
-                        height="115" width="100" onClick={() => this.handleProfileShow()}></img>
+                        <img alt="new" src={this.state.avatar}
+                            height="115" width="100" onClick={() => this.handleProfileShow()}></img>
                     </div>
                     <div>
                         <h3>{this.state.address}</h3>
                         <br></br>
                         <p>Beds: {this.state.beds} | Baths: {this.state.baths} | Sqft: {this.state.square_feet}</p>
-                        <p>Completion Date: {this.state.completionDate}</p>
+                        {/* <p>Completion Date: {this.state.completionDate}</p> */}
+                        <p>Comment: {this.state.comment}</p>
+                        <p></p>
+                        <p></p>
+
 
                         <Button variant="outline-danger" className="projectDelete"
                             id={this.props.project.id} onClick={this.handleShow}>Delete</Button>
@@ -239,8 +253,24 @@ class ProjectCard extends Component {
                         </Modal.Header>
                         <img src={this.state.src}
                             alt="new" className="center"></img>
-                        <Modal.Body>...</Modal.Body>
+                        {/* <Modal.Body>...</Modal.Body> */}
                         <Button variant="outline-danger" onClick={this.deletePhoto}>Delete</Button>
+                    </Modal>
+                    <Modal
+                        size="lg"
+                        show={this.state.profileShow}
+                        onHide={this.handleProfileClose}
+                        aria-labelledby="example-modal-sizes-title-lg"
+                    >
+                        <Modal.Header closeButton>
+                            <Modal.Title id="example-modal-sizes-title-lg">
+
+                            </Modal.Title>
+                        </Modal.Header>
+                        <img src={this.state.src}
+                            alt="new" className="center"></img>
+                        {/* <Modal.Body>...</Modal.Body> */}
+
                     </Modal>
 
                 </div>

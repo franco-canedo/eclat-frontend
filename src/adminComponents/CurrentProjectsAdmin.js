@@ -14,6 +14,7 @@ class CurrentProjectsAdmin extends Component {
         beds: "",
         baths: "",
         square_feet: "",
+        comment: "",
         completionDate: "",
         projects: []
     }
@@ -49,6 +50,7 @@ class CurrentProjectsAdmin extends Component {
         fd.append('baths', this.state.baths);
         fd.append('completion_date', this.state.completionDate);
         fd.append('square_feet', this.state.square_feet);
+        fd.append('comment', this.state.comment);
         fd.append('user_id', this.props.user.currentUser.id);
         axios.post(`${API_ROOT}/newProject`, fd)
             .then(res => {
@@ -119,14 +121,19 @@ class CurrentProjectsAdmin extends Component {
                                                 <Form.Control type="text" placeholder="Enter square feet"
                                                     value={this.state.square_feet} name="square_feet" onChange={this.handleChange} />
                                             </Form.Group>
+                                            <Form.Group controlId="formGridPassword">
+                                                <Form.Label>Comment</Form.Label>
+                                                <Form.Control type="text" placeholder="Enter comment"
+                                                    value={this.state.comment} name="comment" onChange={this.handleChange} />
+                                            </Form.Group>
                                         </Form.Row>
-                                        <Form.Row>
+                                        {/* <Form.Row>
                                             <Form.Group controlId="formGridCity">
                                                 <Form.Label>Completion Date</Form.Label>
                                                 <Form.Control type="text" placeholder="11/15/2020"
                                                     value={this.state.completionDate} name="completionDate" onChange={this.handleChange} />
                                             </Form.Group>
-                                        </Form.Row>
+                                        </Form.Row> */}
                                         
                                         <Button variant="dark" onClick={this.handleNewClick}>Cancel</Button>
                                         <Button variant="primary" type="submit" onClick={this.handleSubmit} className="buttonMargin">

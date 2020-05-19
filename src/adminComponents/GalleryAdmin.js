@@ -74,7 +74,7 @@ class GalleryAdmin extends Component {
     render() {
         return (
             <div>
-                <div className="containerAdmin">
+                <div className="container">
                     <h1>Gallery</h1>
                     <div className="galleryContainer">
                         <div className="formGallery">
@@ -86,7 +86,7 @@ class GalleryAdmin extends Component {
                                         Upload a .png file
                             </Form.Text>
                                 </Form.Group>
-                                <Button variant="success" type="submit" onClick={this.uploadHandler}>
+                                <Button variant="primary" type="submit" onClick={this.uploadHandler}>
                                     Upload
                         </Button>
                             </Form>
