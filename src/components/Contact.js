@@ -10,6 +10,10 @@ class Contact extends Component {
         company_address: "",
         email: "",
         phone_number: "",
+        name: "",
+        email_message: "",
+        subject: "",
+        message: "",
     }
 
     componentDidMount() {
@@ -26,13 +30,38 @@ class Contact extends Component {
 
     }
 
+    handleChange = (event) => {
+        console.log('change?')
+        this.setState({ [event.target.name]: event.target.value });
+    };
+
+    handleSubmit = event => {
+        event.preventDefault();
+        const fd = new FormData();
+        fd.append('name', this.state.name);
+        fd.append('email_message', this.state.email_message);
+        fd.append('subject', this.state.subject);
+        fd.append('message', this.state.message);
+        axios.post(`${API_ROOT}/api/v1/email`, fd)
+            .then(res => {
+                console.log(res);
+                alert('Message sent!');
+                this.setState({
+                    name: "",
+                    email_message: "",
+                    subject: "",
+                    message: "",
+                });
+            }).catch(error => alert(error));
+    }
+
     render() {
         return (
             <div className="gallery">
 
                 <div className="container">
 
-                    <div className="containerEclatAbout">
+                    <div className="containerEclatContact">
                         <div className="aboutInfoEclat">
                             <h2>{this.state.company_name}</h2>
                             <br></br>
@@ -40,35 +69,39 @@ class Contact extends Component {
                             <p>{this.state.phone_number}</p>
                             <p>{this.state.email}</p>
                         </div>
-                    
-                    <div className="aboutInfoEclatForm">
-                        <h2>Send us a message!</h2>
-                        <br></br>
-                        <Form>
-                        <Form.Group controlId="formBasicEmail">
-                               
-                                <Form.Control type="text" placeholder="Name *" />
-                                
-                            </Form.Group>
-                            <Form.Group controlId="formBasicEmail">
-                                
-                                <Form.Control type="email" placeholder="Email *" />
-                            </Form.Group>
 
-                            <Form.Group controlId="formBasicPassword">
-                                
-                                <Form.Control type="text" placeholder="Subject" />
-                            </Form.Group>
-                            <Form.Group controlId="formBasicPassword">
-                                
-                                <Form.Control as="textarea" placeholder="Message..." />
-                            </Form.Group>
-                            
-                            <Button variant="outline-primary" type="submit">
-                                Submit
+                        <div className="aboutInfoEclatForm">
+                            <h2>Send us a message!</h2>
+                            <br></br>
+                            <Form>
+                                <Form.Group controlId="formBasicEmail">
+
+                                    <Form.Control type="text" placeholder="Name *"
+                                        onChange={this.handleChange} name="name" value={this.state.name}   />
+
+                                </Form.Group>
+                                <Form.Group controlId="formBasicEmail">
+
+                                    <Form.Control type="email" placeholder="Email *"
+                                        name="email_message" onChange={this.handleChange} value={this.state.email_message} />
+                                </Form.Group>
+
+                                <Form.Group controlId="formBasicPassword">
+
+                                    <Form.Control type="text" placeholder="Subject"
+                                        name="subject" onChange={this.handleChange} value={this.state.subject} />
+                                </Form.Group>
+                                <Form.Group controlId="formBasicPassword">
+
+                                    <Form.Control as="textarea" placeholder="Message..."
+                                        name="message" onChange={this.handleChange} value={this.state.message} />
+                                </Form.Group>
+
+                                <Button variant="outline-primary" type="submit" onClick={this.handleSubmit}>
+                                    Submit
                             </Button>
-                        </Form>
-                    </div>
+                            </Form>
+                        </div>
                     </div>
                 </div>
             </div>

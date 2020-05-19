@@ -11,6 +11,7 @@ class EditModal extends Component {
         beds: "",
         baths: "",
         square_feet: "",
+        comment: "",
         completionDate: "",
         avatar: [],
     }
@@ -21,6 +22,7 @@ class EditModal extends Component {
             beds: this.props.project.beds,
             baths: this.props.project.baths,
             square_feet: this.props.project.square_feet,
+            comment: this.props.project.comment,
             completionDate: this.props.project.completionDate,
         })
     }
@@ -45,6 +47,7 @@ class EditModal extends Component {
             fd.append('baths', this.state.baths);
             fd.append('completion_date', this.state.completionDate);
             fd.append('square_feet', this.state.square_feet);
+            fd.append('comment', this.state.comment);
             fd.append('id', this.props.project.id);
             axios.post(`${API_ROOT}/editProject`, fd)
             .then(res => {
@@ -55,6 +58,7 @@ class EditModal extends Component {
                     beds: res.data.beds,
                     baths: res.data.baths,
                     square_feet: res.data.square_feet,
+                    comment: res.data.comment,
                     completionDate: res.data.completion_date,
                 })
                 this.props.handleEditProjectInfo(this.state)
@@ -67,6 +71,7 @@ class EditModal extends Component {
             fd.append('baths', this.state.baths);
             fd.append('completion_date', this.state.completionDate);
             fd.append('square_feet', this.state.square_feet);
+            fd.append('comment', this.state.comment);
             fd.append('avatar', this.state.avatar);
             fd.append('id', this.props.project.id);
             axios.post(`${API_ROOT}/editProject`, fd)
@@ -78,6 +83,7 @@ class EditModal extends Component {
                     beds: res.data.beds,
                     baths: res.data.baths,
                     square_feet: res.data.square_feet,
+                    comment: res.data.comment,
                     completionDate: res.data.completion_date,
                 })
                 this.props.handleEditProjectInfo(this.state, res.data.photo)
@@ -123,6 +129,11 @@ class EditModal extends Component {
                                 <Form.Label>Sqft</Form.Label>
                                 <Form.Control type="text" placeholder="Enter square feet"
                                     value={this.state.square_feet} name="square_feet" onChange={this.handleChange} />
+                            </Form.Group>
+                            <Form.Group controlId="formGridPassword">
+                                <Form.Label>Sqft</Form.Label>
+                                <Form.Control type="text" placeholder="Enter comment"
+                                    value={this.state.comment} name="comment" onChange={this.handleChange} />
                             </Form.Group>
                         </Form.Row>
                         <Form.Row>

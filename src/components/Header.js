@@ -29,10 +29,10 @@ class Header extends Component {
                     height="80" width="110" className="logoImg"></img>
                 </div>
                 <div className="navLinks">
-                    <button onClick={this.props.galleryClick} className="headerButtons">Gallery</button>
-                    <button onClick={this.props.currentProjectClick} className="headerButtons">Projects</button>
-                    <button onClick={this.props.aboutClick} className="headerButtons">About</button>
-                    <button onClick={this.props.contactClick} className="headerButtons">Contact</button>
+                    <button onClick={this.props.galleryClick} className="headerButtons">GALLERY</button>
+                    <button onClick={this.props.currentProjectClick} className="headerButtons">PROJECTS</button>
+                    <button onClick={this.props.aboutClick} className="headerButtons">ABOUT</button>
+                    <button onClick={this.props.contactClick} className="headerButtons">CONTACT</button>
                 </div>
             </div>
         );

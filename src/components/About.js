@@ -17,7 +17,7 @@ class About extends Component {
                     motto: res.data.motto,
                     who_we_are: res.data.who_we_are,
                 })
-            })
+            }).catch(error => alert(error));
 
     }
 
@@ -29,7 +29,7 @@ class About extends Component {
 
                     <div className="containerEclatAbout">
                         <div className="aboutInfoEclat">
-                            <h2>{this.state.motto}</h2>
+                            <h1>{this.state.motto}</h1>
                             <br></br>
                             <p>{this.state.who_we_are}</p>
                         </div>
