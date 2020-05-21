@@ -18,7 +18,6 @@ class About extends Component {
                     who_we_are: res.data.who_we_are,
                 })
             }).catch(error => alert(error));
-
     }
 
     render() {

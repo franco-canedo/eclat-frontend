@@ -7,6 +7,7 @@ import Home from './components/Home';
 import CurrentProjects from './components/CurrentProjects';
 import About from './components/About';
 import Contact from './components/Contact';
+import Footer from './components/Footer';
 
 
 
@@ -68,7 +69,7 @@ class App extends Component {
                 this.state.page === "About" ? <About /> :
                   this.state.page === "Contact" ? <Contact /> : null
         }
-
+        <Footer />
       </div>
     )
 
