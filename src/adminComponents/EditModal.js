@@ -38,8 +38,8 @@ class EditModal extends Component {
         })
     }
 
-    saveChangesHandler = (event) => {
-        event.preventDefault();
+    saveChangesHandler = async e => {
+        e.preventDefault();
         if (this.state.avatar.length === 0) {
             const fd = new FormData();
             fd.append('address', this.state.address);
@@ -50,21 +50,45 @@ class EditModal extends Component {
             fd.append('comment', this.state.comment);
             fd.append('id', this.props.project.id);
             axios.post(`${API_ROOT}/editProject`, fd)
-            .then(res => {
-                console.log(res.data);
-                alert('Changes saved');
-                this.setState({
-                    address: res.data.address,
-                    beds: res.data.beds,
-                    baths: res.data.baths,
-                    square_feet: res.data.square_feet,
-                    comment: res.data.comment,
-                    completionDate: res.data.completion_date,
-                })
-                this.props.handleEditProjectInfo(this.state)
-                this.props.onHide();
-            }).catch(error => alert(error));
+                .then(res => {
+                    console.log(res.data);
+                    alert('Changes saved');
+                    this.setState({
+                        address: res.data.address,
+                        beds: res.data.beds,
+                        baths: res.data.baths,
+                        square_feet: res.data.square_feet,
+                        comment: res.data.comment,
+                        completionDate: res.data.completion_date,
+                    })
+                    this.props.handleEditProjectInfo(this.state)
+                    this.props.onHide();
+                }).catch(error => alert(error));
         } else {
+            const file = this.state.avatar;
+            if (!file) return;
+
+            const payload = await fetch(`${API_ROOT}/s3/direct_post`).then(res =>
+                res.json()
+            );
+
+            const url = payload.url;
+            const formData = new FormData();
+
+            Object.keys(payload.fields).forEach(key =>
+                formData.append(key, payload.fields[key])
+            );
+            formData.append('file', file);
+
+            const xml = await fetch(url, {
+                method: 'POST',
+                body: formData
+            }).then(res => res.text());
+
+            const uploadUrl = new DOMParser()
+                .parseFromString(xml, 'application/xml')
+                .getElementsByTagName('Location')[0].textContent;
+
             const fd = new FormData();
             fd.append('address', this.state.address);
             fd.append('beds', this.state.beds);
@@ -74,21 +98,22 @@ class EditModal extends Component {
             fd.append('comment', this.state.comment);
             fd.append('avatar', this.state.avatar);
             fd.append('id', this.props.project.id);
+            fd.append('url', uploadUrl);
             axios.post(`${API_ROOT}/editProject`, fd)
-            .then(res => {
-                console.log(res.data);
-                alert('Changes saved');
-                this.setState({
-                    address: res.data.address,
-                    beds: res.data.beds,
-                    baths: res.data.baths,
-                    square_feet: res.data.square_feet,
-                    comment: res.data.comment,
-                    completionDate: res.data.completion_date,
-                })
-                this.props.handleEditProjectInfo(this.state, res.data.photo)
-                this.props.onHide();
-            }).catch(error => alert(error));
+                .then(res => {
+                    console.log(res.data);
+                    alert('Changes saved');
+                    this.setState({
+                        address: res.data.address,
+                        beds: res.data.beds,
+                        baths: res.data.baths,
+                        square_feet: res.data.square_feet,
+                        comment: res.data.comment,
+                        completionDate: res.data.completion_date,
+                    })
+                    this.props.handleEditProjectInfo(this.state, res.data.photo)
+                    this.props.onHide();
+                }).catch(error => alert(error));
         }
     }
 
@@ -145,7 +170,7 @@ class EditModal extends Component {
                             <Form.Group controlId="formGridCity">
                                 <Form.Label>Choose profile picture</Form.Label>
                                 <Form.Control type="file"
-                                 name="avatar" onChange={this.fileSelectedHandler} />
+                                    name="avatar" onChange={this.fileSelectedHandler} />
                             </Form.Group>
                         </Form.Row>
                     </Form>

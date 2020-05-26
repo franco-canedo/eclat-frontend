@@ -252,7 +252,7 @@
 }
 
 .pictureCard {
-  
+  break-inside: avoid-column;
   margin: 5px;
   padding: 5px;
   box-shadow: .5px 1.5px;

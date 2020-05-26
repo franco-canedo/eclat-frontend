@@ -59,15 +59,43 @@ class ProjectCard extends Component {
         })
     }
 
-    uploadHandler = (event) => {
-        event.preventDefault();
+    uploadHandler = async e => {
+        e.preventDefault();
+
+
         if (this.state.selectedFiles.length === 0) {
             alert('no file chosen');
         } else {
             for (let i = 0; i < this.state.selectedFiles.length; i++) {
+                const file = this.state.selectedFiles[i];
+                if (!file) return;
+
+                const payload = await fetch(`${API_ROOT}/s3/direct_post`).then(res =>
+                    res.json()
+                );
+
+                const url = payload.url;
+                const formData = new FormData();
+
+                Object.keys(payload.fields).forEach(key =>
+                    formData.append(key, payload.fields[key])
+                );
+                formData.append('file', file);
+
+                const xml = await fetch(url, {
+                    method: 'POST',
+                    body: formData
+                }).then(res => res.text());
+
+                const uploadUrl = new DOMParser()
+                    .parseFromString(xml, 'application/xml')
+                    .getElementsByTagName('Location')[0].textContent;
+
+    
                 const fd = new FormData();
                 fd.append('avatar', this.state.selectedFiles[i]);
-                fd.append('project_id', this.props.project.id)
+                fd.append('project_id', this.props.project.id);
+                fd.append('url', uploadUrl);
                 axios.post(`${API_ROOT}/projectPicture`, fd)
                     .then(res => {
                         console.log(res.data);

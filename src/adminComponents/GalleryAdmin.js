@@ -8,7 +8,9 @@ import Form from 'react-bootstrap/Form';
 class GalleryAdmin extends Component {
     state = {
         selectedFile: [],
-        photos: []
+        photos: [],
+        loading: false,
+        url: "",
     }
 
     componentDidMount() {
@@ -28,15 +30,46 @@ class GalleryAdmin extends Component {
         })
     }
 
-    uploadHandler = (event) => {
-        event.preventDefault();
+    uploadHandler = async e => {
+        e.preventDefault();
         if (this.state.selectedFile.length === 0) {
             alert('no file chosen');
         } else {
             for (let i = 0; i < this.state.selectedFile.length; i++) {
+                const file = this.state.selectedFile[i];
+                if (!file) return;
+
+                this.setState({ loading: true });
+
+                const payload = await fetch(`${API_ROOT}/s3/direct_post`).then(res =>
+                    res.json()
+                );
+
+                const url = payload.url;
+                const formData = new FormData();
+
+                Object.keys(payload.fields).forEach(key =>
+                    formData.append(key, payload.fields[key])
+                );
+                formData.append('file', file);
+
+                const xml = await fetch(url, {
+                    method: 'POST',
+                    body: formData
+                }).then(res => res.text());
+
+                const uploadUrl = new DOMParser()
+                    .parseFromString(xml, 'application/xml')
+                    .getElementsByTagName('Location')[0].textContent;
+
+                this.setState({
+                    loading: false,
+                    url: uploadUrl
+                });
                 const fd = new FormData();
                 fd.append('avatar', this.state.selectedFile[i]);
-                fd.append('user_id', this.props.user.currentUser.id)
+                fd.append('user_id', this.props.user.currentUser.id);
+                fd.append('url', uploadUrl);
                 axios.post(`${API_ROOT}/photo`, fd)
                     .then(res => {
                         console.log(res);
