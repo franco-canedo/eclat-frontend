@@ -39,10 +39,10 @@ class Contact extends Component {
         event.preventDefault();
         const fd = new FormData();
         fd.append('name', this.state.name);
-        fd.append('email_message', this.state.email_message);
+        fd.append('email_address', this.state.email_message);
         fd.append('subject', this.state.subject);
         fd.append('message', this.state.message);
-        axios.post(`${API_ROOT}/api/v1/email`, fd)
+        axios.post(`${API_ROOT}/email`, fd)
             .then(res => {
                 console.log(res);
                 alert('Message sent!');
@@ -86,11 +86,7 @@ class Contact extends Component {
                                         name="email_message" onChange={this.handleChange} value={this.state.email_message} />
                                 </Form.Group>
 
-                                <Form.Group controlId="formBasicPassword">
-
-                                    <Form.Control type="text" placeholder="Subject"
-                                        name="subject" onChange={this.handleChange} value={this.state.subject} />
-                                </Form.Group>
+                               
                                 <Form.Group controlId="formBasicPassword">
 
                                     <Form.Control as="textarea" placeholder="Message..."
