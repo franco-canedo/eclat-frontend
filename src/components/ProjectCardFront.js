@@ -82,7 +82,10 @@ class ProjectCardFront extends Component {
                             onClick={() => this.handleProfileShow()}></img>
                     </div>
                     <div className="projectInformation">
-                        <h1>{this.state.address}</h1>
+                        <div className="address">
+                        <p>{this.state.address}</p>
+                        </div>
+                        
 
                         <p>Beds: {this.state.beds}   /  Baths: {this.state.baths}   /   Sqft: {this.state.square_feet}</p>
                         {/* <p>Completion Date: {this.state.completionDate}</p> */}

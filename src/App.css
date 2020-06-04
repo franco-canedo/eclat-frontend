@@ -355,7 +355,23 @@
  
 }
 
+.address {
+  font-size: 40px;
+}
 
+@media screen and (max-width: 1200px) { 
+  /* CSS Code for when the screen size is 480px Screen size */
+  .address {
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 900px) { 
+  /* CSS Code for when the screen size is 480px Screen size */
+  .address {
+    font-size: 20px;
+  }
+}
 /* .image:hover {
   height: 225px;
   width: 255px;
