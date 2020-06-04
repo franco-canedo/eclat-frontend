@@ -81,7 +81,7 @@ class ProjectCardFront extends Component {
                         <img alt="new" src={this.state.avatar} className="imageProjectSmall"
                             onClick={() => this.handleProfileShow()}></img>
                     </div>
-                    <div>
+                    <div className="projectInformation">
                         <h1>{this.state.address}</h1>
 
                         <p>Beds: {this.state.beds}   /  Baths: {this.state.baths}   /   Sqft: {this.state.square_feet}</p>

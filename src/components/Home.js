@@ -5,7 +5,8 @@ import Carousel from 'react-bootstrap/Carousel';
 
 class Home extends Component {
     state = {
-        photos: []
+        photos: [],
+        logo: "",
     }
 
     componentDidMount() {
@@ -15,7 +16,14 @@ class Home extends Component {
                 this.setState({
                     photos: res.data
                 })
-            })
+            });
+        axios.get(`${API_ROOT}/api/v1/logo`)
+            .then(res => {
+                console.log(res.data);
+                this.setState({
+                    logo: res.data.avatar
+                })
+            }).catch(error => alert(error));
     }
 
     render() {
@@ -27,7 +35,7 @@ class Home extends Component {
                         {
                             this.state.photos.map(photo => {
                                 return <Carousel.Item>
-                                    <img                        
+                                    <img
                                         src={photo.photo}
                                         alt="Home"
                                         className="carouselPictures"
@@ -38,6 +46,7 @@ class Home extends Component {
                     </Carousel>
 
                 </div>
+                
             </div>
         );
     }

@@ -52,6 +52,7 @@
   /* height: 1000px; */
   padding: 20px;
   margin-top: 75px;
+  /* text-align: center; */
 }
 
 .color {
@@ -72,6 +73,11 @@
   background-color: rgba(80, 76, 69, 0.966);
   height: 740px;
   /* border: solid; */
+}
+
+@media screen and (max-width: 480px) { 
+  /* CSS Code for when the screen size is 480px Screen size */
+
 }
 
 .home2 {
@@ -114,6 +120,14 @@
  
 }
 
+@media screen and (max-width: 720px) { 
+  /* CSS Code for when the screen size is 480px Screen size */
+  .aboutInfoEclat {
+    /* width: 20px; */
+    font-size: 15px;
+  }
+}
+
 .aboutInfoEclatForm {
   /* border: ridge; */
   background-color: whitesmoke;
@@ -132,6 +146,19 @@
   width: 95%;
 }
 
+@media screen and (max-width: 1100px) { 
+  /* CSS Code for when the screen size is 480px Screen size */
+  .pictureCardEclat {
+    height: 150px;
+  }
+}
+
+@media screen and (max-width: 720px) { 
+  /* CSS Code for when the screen size is 480px Screen size */
+  .pictureCardEclat {
+    height: 100px;
+  }
+}
 
 .home {
   border: dotted;
@@ -142,17 +169,33 @@
 .carouselHome {
   height: 500px;
   width: 100%;
+  /* margin-left: 50%; */
+}
+
+@media screen and (max-width: 720px) { 
+  /* CSS Code for when the screen size is 480px Screen size */
+  .carouselHome {
+   height: 50px;
+  }
 }
 
 .carouselPictures {
   /* display: block; */
   /* position: static; */
-  margin-bottom: -300px;
-  margin-top: -300px;
+  /* margin-bottom: -300px;
+  margin-top: -300px; */
   margin-left: auto;
   margin-right: auto;
   width: auto;
-  max-height: 1200px;
+  max-height: 600px;
+}
+
+@media screen and (max-width: 720px) { 
+  /* CSS Code for when the screen size is 480px Screen size */
+  .carouselPictures {
+   max-height: 400px;
+   max-width: 500px;
+  }
 }
 
 .Elogo {
@@ -167,8 +210,17 @@
 }
 
 .logoImg {
-  margin-left: 300px;
+  margin-left: 50px;
   margin-top: 5px;
+  height: 80px;
+  width: 110px;
+}
+
+@media screen and (max-width: 720px) { 
+  /* CSS Code for when the screen size is 480px Screen size */
+  .logoImg {
+    margin-left: 10px;
+  }
 }
 
 
@@ -206,6 +258,22 @@
   font-size: 25px;
   border: none;
   border-left: ridge;
+}
+
+@media screen and (max-width: 1100px) { 
+  /* CSS Code for when the screen size is 480px Screen size */
+  .headerButtons {
+    /* width: 20px; */
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 720px) { 
+  /* CSS Code for when the screen size is 480px Screen size */
+  .headerButtons {
+    /* width: 20px; */
+    font-size: 10px;
+  }
 }
 
 /* ADMINISTRATOR ===================================================================== */
@@ -275,6 +343,7 @@
   overflow: hidden;
 }
 
+
 .imageProjectSmall {
   display: block;
   margin-left: auto;
@@ -284,6 +353,7 @@
   box-shadow: .1px .5px;
  
 }
+
 
 /* .image:hover {
   height: 225px;
@@ -376,6 +446,14 @@
   font-size: 25px;
 }
 
+@media screen and (max-width: 720px) { 
+  /* CSS Code for when the screen size is 480px Screen size */
+  .projectInfoDivEclat {
+    /* width: 20px; */
+    font-size: 15px;
+  }
+}
+
 .projectDelete {
   float: right;
   margin-right: 5px;
@@ -408,6 +486,14 @@
   border: none;
 }
 
+@media screen and (max-width: 720px) { 
+  /* CSS Code for when the screen size is 480px Screen size */
+  .projectPicturesDivEclat {
+    /* width: 20px; */
+    height: 50px;
+  }
+}
+
 .buttonMargin {
   margin-left: 5px;
 }
@@ -426,10 +512,23 @@
   margin-right: auto;
   width: auto;
   max-height: 700px;
+  max-width: 1000px;
+}
+
+@media screen and (max-width: 720px) { 
+  /* CSS Code for when the screen size is 480px Screen size */
+  .centerEclat {
+   max-height: 300px;
+  }
 }
 
 .homeLogoAdmin {
   max-height: 500px;
+}
+
+
+.logoDivHome {
+  margin-top: 100px;
 }
 
 .footer {
