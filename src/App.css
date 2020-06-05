@@ -282,6 +282,14 @@
   
 }
 
+@media screen and (max-width: 720px) { 
+  /* CSS Code for when the screen size is 480px Screen size */
+  .navLinks {
+   padding: 1px;
+   float: left;
+  }
+}
+
 .headerButtons {
   width: 23%;
   padding: 10px;
@@ -312,6 +320,8 @@
     font-size: 10px;
   }
 }
+
+
 
 
 
