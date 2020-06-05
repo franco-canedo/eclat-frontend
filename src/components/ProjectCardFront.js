@@ -99,8 +99,8 @@ class ProjectCardFront extends Component {
                     {
                         five_photos.map(photo => {
                             return <Fragment>
-                                <img key={photo.id} src={photo.photo} className="imageProjectSmall"
-                                    alt="new" height="92" width="100" onClick={() => this.handlePictureShow(photo.id)}></img>
+                                <img key={photo.id} src={photo.photo} className="imageProjectSmall2"
+                                    alt="new"  width="100" onClick={() => this.handlePictureShow(photo.id)}></img>
                             </Fragment>
                         })
                     }
