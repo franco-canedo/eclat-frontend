@@ -9,7 +9,7 @@ class Footer extends Component {
                 <br></br>
                 <h4>Follow us on Instagram!</h4>
                 <br></br>
-                <a href="https://www.instagram.com/homesbyeclat/?hl=en">
+                <a href="https://www.instagram.com/canedobuilders/">
                 <img alt="instagram logo" src={instagramLogo2} className="instagramLogo"></img>
                 </a>
                
