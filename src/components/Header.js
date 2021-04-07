@@ -26,7 +26,7 @@ class Header extends Component {
                 <div className="Elogo">
                     {/* <h1 onClick={this.props.homeClick}>Eclat Homes</h1> */}
                     <img alt="logo" src={this.state.logo} onClick={this.props.homeClick}
-                    height="80" width="110" className="logoImg"></img>
+                     className="logoImg"></img>
                 </div>
                 <div className="navLinks">
                     <button onClick={this.props.galleryClick} className="headerButtons">GALLERY</button>

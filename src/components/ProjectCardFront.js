@@ -81,8 +81,11 @@ class ProjectCardFront extends Component {
                         <img alt="new" src={this.state.avatar} className="imageProjectSmall"
                             onClick={() => this.handleProfileShow()}></img>
                     </div>
-                    <div>
-                        <h1>{this.state.address}</h1>
+                    <div className="projectInformation">
+                        <div className="address">
+                        <p>{this.state.address}</p>
+                        </div>
+                        
 
                         <p>Beds: {this.state.beds}   /  Baths: {this.state.baths}   /   Sqft: {this.state.square_feet}</p>
                         {/* <p>Completion Date: {this.state.completionDate}</p> */}
@@ -96,8 +99,8 @@ class ProjectCardFront extends Component {
                     {
                         five_photos.map(photo => {
                             return <Fragment>
-                                <img key={photo.id} src={photo.photo} className="imageProjectSmall"
-                                    alt="new" height="92" width="100" onClick={() => this.handlePictureShow(photo.id)}></img>
+                                <img key={photo.id} src={photo.photo} className="imageProjectSmall2"
+                                    alt="image"   onClick={() => this.handlePictureShow(photo.id)}></img>
                             </Fragment>
                         })
                     }
