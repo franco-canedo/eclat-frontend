@@ -96,9 +96,10 @@
   /* column-count: 4; */
 }
 
-@media only screen and (min-width: 400px) {
+@media only screen and (min-width: 480px) {
   .containerEclatGallery {
     column-count: 4;
+    
   }
 }
 
@@ -189,7 +190,7 @@
 @media screen and (max-width: 480px) { 
   /* CSS Code for when the screen size is 480px Screen size */
   .pictureCardEclat {
-    height: 60px;
+    height: auto;
   }
 }
 
